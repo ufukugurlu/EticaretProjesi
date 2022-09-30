@@ -1,0 +1,67 @@
+﻿@using Eticaret.Web.Classes
+@model Eticaret.Web.Models.ProductModel.fnListele;
+@{
+    Fonksiyonlar fn = new Fonksiyonlar();
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string strAra = Context.Request.Query["ara"];
+    string strDurum = Context.Request.Query["durum"];
+    string strSayfa = Context.Request.Query["sayfa"];
+    long lngSayfa = 1;
+    int intGosterim_Adeti = 10;
+    if (fn.fnSayisal_Mi(strSayfa))
+    {
+        lngSayfa = Convert.ToInt64(strSayfa);
+    }
+    string strQueryString = "?ara=" + strAra + "&durum=" + strDurum;
+    ViewBag.Title = "Ürünler - Sayfa: " + lngSayfa;
+    int intToplam_Kayit = 0;
+}
+<div class="container">
+    <div class="js-sepet">
+        <a href="/sepet">Sepete Git</a>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped b-t text-sm">
+            <thead>
+            <tr>
+                <th>Ürün ID</th>
+                <th>Fiyat</th>
+                <th>Ürün Adı</th>
+            </tr>
+            </thead>
+            <tbody>
+            @{
+                if (Model != null)
+                {
+                    intToplam_Kayit = Model.toplam_kayit_sayisi;
+                    if (intToplam_Kayit == 0)
+                    {
+                        <tr>
+                            <td colspan="3">
+                                Ürünler bulunamadı
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var nesne in Model.liste)
+                        {
+                            <tr data-satir="@nesne.Id">
+                                <td>
+                                    @nesne.Price
+                                </td>
+                                <td>
+                                    @nesne.ProductName
+                                </td>
+                                <td>
+                                    <a href="javascript:;" class="js-sepete-ekle" onclick="fnSepete_Ekle('@nesne.Id', '@nesne.ProductName')">Sepete Ekle</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

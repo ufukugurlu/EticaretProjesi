@@ -1,0 +1,50 @@
+﻿@model Eticaret.Web.Models.BasketModel.fnListele;
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string deger = Model.degerler;
+}
+<div class="container">
+    <div class="table-responsive">
+        <table class="table table-striped b-t text-sm">
+            <thead>
+            <tr>
+                <th>Ürün Adı</th>
+                <th>Adet</th>
+                <th>İşlem</th>
+            </tr>
+            </thead>
+            <tbody>
+            @{
+                if (Model != null)
+                {
+                    if (Model.liste == null || Model.liste.Count() == 0)
+                    {
+                        <tr>
+                            <td colspan="3">
+                                Sepet boş.
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var nesne in Model.liste)
+                        {
+                            <tr data-satir="@nesne.Id">
+                                <td>
+                                    @nesne.ProductName
+                                </td>
+                                <td>
+                                    @nesne.Total
+                                </td>
+                                <td>
+                                    <a href="javascript:;" class="js-sepete-ekle" onclick="fnSepete_Ekle(@nesne.Id)">Sepete Ekle</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

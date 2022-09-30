@@ -1,0 +1,36 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["site_baslik"]</title>
+    <link rel="stylesheet" href='@Url.Content("/wwwroot/css/style.css?11")' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+</head>
+<body>
+    <div class="kapsul">
+        <header class="header">
+            <div class="container">
+                <div class="header-ic">
+                    <div class="logo">
+                        <a href="/">LOGO</a>
+                        <br />
+                        <a href="/">Ürünler</a> | <a href="/sepet">Sepete Git</a> | <a href="/user-logout">Çıkış</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        @RenderBody()
+        <footer class="footer">
+            <div class="footer-ic">
+                <div class="container">
+                    <div class="row">
+                        Burası footer
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script type="text/javascript" src='@Url.Content("/wwwroot/js/script.js")'></script>
+</body>
+</html>
